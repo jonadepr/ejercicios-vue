@@ -1,9 +1,9 @@
-var app = new Vue({ 
+var app = new Vue({
     el: ".app",
     data: {
         message: "Mi primera calculadora en Vue",
         op1: "",
-        op2: ""
+        op2: "",
     },
     methods: {
 
