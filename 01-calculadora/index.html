@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My first Vue Calculator</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <class class="app">
+        {{ message }}
+        <hr>
+        <label>Operador1</label>
+        <input v-model="op1">
+        <hr>
+        <label>Operador2</label>
+        <input v-model="op2">
+        <hr>
+        <label>Op1 + Op2</label>
+        <div v-if="ok()">{{suma}}</div>
+        <div v-else>faltan operadores</div>
+        <hr>
+        <label>Op1 - Op2</label>
+        <div v-if="ok()">{{resta}}</div>
+        <div v-else>faltan operadores</div>
+        <hr>
+        <label>Op1 * Op2</label>
+        <div v-if="ok()">{{multi}}</div>
+        <div v-else>faltan operadores</div>
+        <hr>
+        <label>Op1^2</label>
+        <div v-if="ok2()">{{potencia}}</div>
+        <div v-else>faltan operadores</div>
+        <hr>
+        <button v-on:click="resetOp()">Reset</button>
+    </div>
+</class>
+    <script src="./app.js"></script>
+</body>
+
+</html>
