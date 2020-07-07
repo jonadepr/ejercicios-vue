@@ -26,13 +26,14 @@
                     <td>{{tarea.texto}}</td>
                     <td style="text-align: center; ">
                         <button class="btn btn-danger" v-if="!tarea.completed">PENDIENTE</button>
-                        <button class="btn btn-success" v-else>COMPLETADA</button>
+                        <button class="btn btn-success" v-else @click="BorrarTarea(tarea)">COMPLETADA ELIMINAR</button>
                         <button class="btn btn-primary" v-if="!tarea.completed" @click="completarTarea(tarea)">Completar</button>
 
                     </td>
                 </tr>
             </tbody>
         </table>
+        <div>Número de tareas: {{numeroTareas}}</div>
 
     </div>
     <script src="./app.js"></script>
