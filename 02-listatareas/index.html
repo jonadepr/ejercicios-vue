@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Mi lista de tareas en Vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <link rel="stylesheet" href="./app.css">
+</head>
+
+<body>
+    <div class="app">
+        <h3>{{ message }}</h3>
+        <input type="text" v-model="newTarea" @keyup.enter="addTareaYBorra"><button class="btn btn-primary"
+            @click="addTareaYBorra">Añadir</button>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th style="min-width: 180px; background-color: aqua;">Lista de tareas</th>
+                    <th style="min-width: 180px; "></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="tarea in tareas">
+                    <td>{{tarea.texto}}</td>
+                    <td style="text-align: center; ">
+                        <button class="btn btn-danger" v-if="!tarea.completed">PENDIENTE</button>
+                        <button class="btn btn-success" v-else>COMPLETADA</button>
+                        <button class="btn btn-primary" v-if="!tarea.completed" @click="completarTarea(tarea)">Completar</button>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <script src="./app.js"></script>
+</body>
+
+</html>
