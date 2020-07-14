@@ -57,21 +57,25 @@ export default {
     },
 
     checkOut(i) {
+      console.log(i);
 
-        console.log(i);
-        if (this.arrayClick.length < 2) {
-          this.array[i].mostrar = true;
-          this.arrayClick.push({ obj: this.array[i], pos: i });
-        } else if (this.arrayClick.length === 2) {
-          if (this.arrayClick[0].obj.letra === this.arrayClick[1].obj.letra && this.arrayClick[0].pos !== this.arrayClick[1].pos) {
-            this.array[this.arrayClick[0].pos].mostrar = true;
-            this.array[this.arrayClick[1].pos].mostrar = true;
-          } else {
-            this.array[this.arrayClick[0].pos].mostrar = false;
-            this.array[this.arrayClick[1].pos].mostrar = false;
-          }
-          this.arrayClick.length = 0;
+      this.array[i].mostrar = true;
+      this.arrayClick.push({ obj: this.array[i], pos: i });
+
+      console.log("long arrayc", this.arrayClick.length);
+      if (this.arrayClick.length === 2) {
+        if (
+          this.arrayClick[0].obj.letra === this.arrayClick[1].obj.letra &&
+          this.arrayClick[0].pos !== this.arrayClick[1].pos
+        ) {
+          this.array[this.arrayClick[0].pos].mostrar = true;
+          this.array[this.arrayClick[1].pos].mostrar = true;
+        } else {
+          this.array[this.arrayClick[0].pos].mostrar = false;
+          this.array[this.arrayClick[1].pos].mostrar = false;
         }
+        this.arrayClick = [];
+      }
     },
 
     todosTrue() {
