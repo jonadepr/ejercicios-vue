@@ -62,13 +62,13 @@ export default {
         if (this.arrayClick.length < 2) {
           this.array[i].mostrar = true;
           this.arrayClick.push({ obj: this.array[i], pos: i });
-          setTimeout(() => {
-            this.array[i].mostrar = false;
-          }, 500);
         } else if (this.arrayClick.length === 2) {
           if (this.arrayClick[0].obj.letra === this.arrayClick[1].obj.letra) {
             this.array[this.arrayClick[0].pos].mostrar = true;
             this.array[this.arrayClick[1].pos].mostrar = true;
+          } else {
+            this.array[this.arrayClick[0].pos].mostrar = false;
+            this.array[this.arrayClick[1].pos].mostrar = false;
           }
           this.arrayClick.length = 0;
         }
