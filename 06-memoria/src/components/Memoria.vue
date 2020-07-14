@@ -1,0 +1,128 @@
+<template>
+  <div class="memoria">
+    <h1>{{msg}}</h1>
+    <div class="grid">
+      <div
+        class="item"
+        v-for="(m, index) in array"
+        v-bind:key="`m${index}`"
+        @click="checkOut(index)"
+      >
+        <div v-if="m.mostrar">{{m.letra}}</div>
+        <div v-else>X</div>
+      </div>
+    </div>
+    <div v-if="todosTrue()">GAME OVER</div>
+  </div>
+</template>
+
+<script>
+// import bus from "../bus";
+export default {
+  name: "memoria",
+  props: {
+    msg: String
+  },
+  data() {
+    return {
+      array: [
+        { letra: "A", mostrar: false },
+        { letra: "A", mostrar: false },
+        { letra: "B", mostrar: false },
+        { letra: "B", mostrar: false },
+        { letra: "C", mostrar: false },
+        { letra: "C", mostrar: false },
+        { letra: "D", mostrar: false },
+        { letra: "D", mostrar: false },
+        { letra: "E", mostrar: false },
+        { letra: "E", mostrar: false },
+        { letra: "F", mostrar: false },
+        { letra: "F", mostrar: false },
+        { letra: "G", mostrar: false },
+        { letra: "G", mostrar: false },
+        { letra: "H", mostrar: false },
+        { letra: "H", mostrar: false }
+      ],
+      arrayClick: []
+    };
+  },
+
+  methods: {
+    mezclarArray() {
+      this.shuffle(this.array);
+    },
+
+    shuffle(array) {
+      array.sort(() => Math.random() - 0.5);
+    },
+
+    checkOut(i) {
+      if (this.array[i].mostrar === false) {
+        console.log(i);
+        if (this.arrayClick.length < 2) {
+          this.array[i].mostrar = true;
+          this.arrayClick.push({ obj: this.array[i], pos: i });
+          setTimeout(() => {
+            this.array[i].mostrar = false;
+          }, 500);
+        } else if (this.arrayClick.length === 2) {
+          if (this.arrayClick[0].obj.letra === this.arrayClick[1].obj.letra) {
+            this.array[this.arrayClick[0].pos].mostrar = true;
+            this.array[this.arrayClick[1].pos].mostrar = true;
+          }
+          this.arrayClick.length = 0;
+        }
+      }
+    },
+
+    todosTrue() {
+      let aux = false;
+      for (var i = 0; i < this.array.length; i++) {
+        if (this.array[i].mostrar === false) {
+          return false;
+        } else aux = true;
+      }
+      return aux;
+    }
+  },
+  created: function() {
+    this.mezclarArray();
+  }
+};
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+.memoria {
+  display: grid;
+}
+.grid {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  width: 1em;
+  justify-self: center;
+}
+
+.item {
+  border-style: solid;
+  margin: 2px;
+  width: 1em;
+  cursor: pointer;
+  font-size: xx-large;
+}
+
+h3 {
+  margin: 40px 0 0;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+a {
+  color: #42b983;
+}
+</style>
