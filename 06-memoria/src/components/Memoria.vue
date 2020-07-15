@@ -59,7 +59,7 @@ export default {
 
     checkOut(i) {
       if (!this.todosTrue()) {
-        if (!this.array[i].mostrar) {
+        if (!this.array[i].mostrar || this.click === 2) {
           console.log(i);
           this.click++;
           console.log("click", this.click);
